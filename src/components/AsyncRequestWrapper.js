@@ -8,7 +8,7 @@ function AsyncRequestWrapper({ loading, error, empty, children }) {
             <div className="center-container">
                 {loading && (
                     <div className="spin">
-                        <Spin size="large" />
+                        <Spin size="large" tip="Loading..." />
                     </div>
                 )}
                 {empty && <Empty description="No blog posts to show" />}
@@ -29,7 +29,7 @@ function AsyncRequestWrapper({ loading, error, empty, children }) {
 
 AsyncRequestWrapper.propTypes = {
     loading: PropTypes.bool,
-    error: PropTypes.bool,
+    error: PropTypes.string,
     empty: PropTypes.bool,
     children: PropTypes.element.isRequired,
 };

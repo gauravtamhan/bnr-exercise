@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useRequest(url, err) {
+function useRequest(getMethod, url, err) {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -9,12 +9,13 @@ function useRequest(url, err) {
         async function fetchResource() {
             try {
                 setLoading(true);
-                const response = await fetch(url);
-                const json = await response.json();
-                setData(json);
+                const response = await getMethod(url);
+                setData(response);
                 // setData([]);
-            } catch (error) {
+            } catch (e) {
+                console.log(e.toString());
                 setError(err);
+                // setError(e.toString());
             } finally {
                 setLoading(false);
             }
