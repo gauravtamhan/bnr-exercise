@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { Layout, Row, Col, Space } from 'antd';
 import useRequest from 'hooks/useRequest';
-import { fetchPosts } from 'fetchPosts';
+import { fetchPosts } from 'api/fetchPosts';
 import AsyncRequestWrapper from 'components/AsyncRequestWrapper';
 import Post from 'components/Post';
 
 const { Content } = Layout;
 
 const URL = 'https://jsonplaceholder.typicode.com/posts';
-const ERR_MSG =
-    'Unable to load blog posts at this time. Please try again later.';
 
 function App() {
-    const { data, error, loading } = useRequest(fetchPosts, URL, ERR_MSG);
+    const { data, error, loading } = useRequest(fetchPosts, URL);
     const [currentUserId, setCurrentUserId] = useState(1);
 
     const hasData = data?.length > 0;
